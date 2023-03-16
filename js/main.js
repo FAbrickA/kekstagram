@@ -15,7 +15,7 @@ function generatePhotoPlaceholders(number) {
     throw RangeError(`Number must be zero or positive`);
   }
 
-  result = Array(number);
+  const result = Array(number);
   for (let i = 0; i < number; ++i) {
     result[i] = {
       id: i + 1,
@@ -23,7 +23,7 @@ function generatePhotoPlaceholders(number) {
       description: `Photo description ${i + 1}`,
       likes: getRandomInt(15, 201),
       comments: getRandomInt(0, 201),
-    }
+    };
   }
 
   return result;
