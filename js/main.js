@@ -1,3 +1,7 @@
-import './showPictures.js';
+import { showPictures } from './showPictures.js';
+import { generatePhotoPlaceholders } from './data.js';
+import './photoUploadForm.js';
 
-// Module 7 task 2
+const photoPlaceholders = generatePhotoPlaceholders(25);
+showPictures(photoPlaceholders);
+
