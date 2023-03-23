@@ -2,9 +2,7 @@ const pictureTemplate = document.querySelector('#picture');
 
 
 export function createPicture(pictureData) {
-  const picture = document.createElement('div');
-  picture.classList.add('picture');
-  picture.append(pictureTemplate.content.cloneNode(true));
+  const picture = pictureTemplate.content.cloneNode(true);
 
   const img = picture.querySelector('.picture__img');
   img.setAttribute('src', pictureData.url);
