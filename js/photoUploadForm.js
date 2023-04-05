@@ -12,20 +12,24 @@ function closeImageUploadModal() {
 }
 
 // show modal (when image uploaded)
-imageInput.addEventListener('change', function(evt) {
+imageInput.addEventListener('change', () => {
   imageUploadModal.classList.toggle('hidden');
   document.body.classList.toggle('modal-open');
 });
 
 // close modal
-modalCloseButton.addEventListener('click', function(evt) {
+modalCloseButton.addEventListener('click', () => {
   closeImageUploadModal();
 });
-document.addEventListener('keydown', function(evt) {
-  if (evt.key == "Escape") closeImageUploadModal();
-})
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    if (document.body.classList.contains('modal-open')) {
+      closeImageUploadModal();
+    }
+  }
+});
 
-photoUploadForm.addEventListener('submit', function(evt) {
+photoUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   photoUploadForm.submit();
   closeImageUploadModal();
