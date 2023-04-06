@@ -1,7 +1,7 @@
-import { edgeNumber } from "./utils.js";
+import { edgeNumber } from './utils.js';
 
 const DEFAULT_SCALE_VALUE = 100;
-const DEFAULT_EFFECT = "none";
+const DEFAULT_EFFECT = 'none';
 
 const photoUploadForm = document.querySelector('#upload-select-image');
 
@@ -67,7 +67,7 @@ const scaleMaxValue = 100;
 
 function setNewScale(value) {
   scaleValue = edgeNumber(value, scaleMinValue, scaleMaxValue);
-  inputScale.value = scaleValue + "%";
+  inputScale.value = `${scaleValue}%`;
   imagePreview.style.transform = `scale(${scaleValue}%)`;
 }
 
@@ -84,7 +84,7 @@ increaseScaleButton.addEventListener('click', () => {
 const effectsBlock = photoUploadForm.querySelector('.effects');
 
 function setNewEffect(effectName) {
-  let img = imagePreview.querySelector('img');
+  const img = imagePreview.querySelector('img');
   img.classList.remove(`effects__preview--${currentEffect}`);
   currentEffect = effectName;
   img.classList.add(`effects__preview--${currentEffect}`);
@@ -92,8 +92,8 @@ function setNewEffect(effectName) {
 
 effectsBlock.addEventListener('change', (evt) => {
   if (evt.target.matches('input[name=\'effect\']')) {
-    let newEffect = evt.target.value;
+    const newEffect = evt.target.value;
     setNewEffect(newEffect);
   }
-})
+});
 // -----
