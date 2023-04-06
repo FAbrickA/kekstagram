@@ -10,4 +10,16 @@ function isLengthCorrect(string, maxLength) {
   return string.length <= maxLength;
 }
 
-export { getRandomInt, isLengthCorrect };
+function edgeNumber(number, minValue, maxValue) {
+  if (maxValue < minValue) {
+    [minValue, maxValue] = [maxValue, minValue];
+  }
+  return Math.min(Math.max(number, minValue), maxValue)
+}
+
+export {
+  getRandomInt,
+  isLengthCorrect,
+  edgeNumber,
+};
+
