@@ -28,15 +28,13 @@ export function showPictures(picturesData) {
 
 export function loadPictures(picturesUrl) {
   fetch(picturesUrl)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    showPictures(data);
-  })
-  .catch(() => {
-    alert('Что то пошло не так. Попробуйте позже');
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      showPictures(data);
+    })
+    .catch(() => {
+      alert('Что то пошло не так. Попробуйте позже');
+    });
 }
 
 function main() {
@@ -61,7 +59,7 @@ function main() {
 
   bigPicture.querySelector('#picture-cancel').addEventListener('click', () => {
     bigPicture.classList.add('hidden');
-  })
+  });
 }
 
 // main();

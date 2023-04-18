@@ -72,11 +72,11 @@ photoUploadForm.addEventListener('submit', (evt) => {
     .then((data) => {
       closeImageUploadModal();
       formUploadSuccess();
-      console.log(data);
+      // console.log(data);
     })
     .catch((err) => {
-      console.error(err);
       formUploadError();
+      // console.error(err);
     });
 
 });
@@ -90,11 +90,12 @@ function handleMessageModal(template, className) {
   const messageModal = document.querySelector(`.${className}`);
   const submitModalButton = messageModal.querySelector(`.${className}__button`);
 
-  const closeModal = () => {
+  function closeModal(){
     messageModal.remove();
-    document.removeEventListener('keydown', handleKeyDownEvent)
+    document.removeEventListener('keydown', handleKeyDownEvent);
   }
-  const handleKeyDownEvent = (evt) => {
+
+  function handleKeyDownEvent(evt) {
     if (evt.key === 'Escape') {
       closeModal();
     }
