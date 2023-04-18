@@ -48,12 +48,76 @@ document.addEventListener('keydown', (evt) => {
     }
   }
 });
+// -----
+
+// submit form -----
+const submitButton = document.querySelector('#upload-submit');
 
 photoUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  photoUploadForm.submit();
-  closeImageUploadModal();
+
+  submitButton.setAttribute('disabled', '');
+  fetch('https://27.javascript.pages.academy/kekstagram-simple', {
+    method: 'POST',
+    body: new FormData(photoUploadForm),
+  })
+    .then((response) => {
+      submitButton.removeAttribute('disabled');
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+    })
+    .then((data) => {
+      closeImageUploadModal();
+      formUploadSuccess();
+      console.log(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      formUploadError();
+    });
+
 });
+
+const successMessageTemplate = document.querySelector('#success');
+const errorMessageTemplate = document.querySelector('#error');
+
+function handleMessageModal(template, className) {
+  document.body.append(template.content.cloneNode(true));
+
+  const messageModal = document.querySelector(`.${className}`);
+  const submitModalButton = messageModal.querySelector(`.${className}__button`);
+
+  const closeModal = () => {
+    messageModal.remove();
+    document.removeEventListener('keydown', handleKeyDownEvent)
+  }
+  const handleKeyDownEvent = (evt) => {
+    if (evt.key === 'Escape') {
+      closeModal();
+    }
+  }
+
+  submitModalButton.addEventListener('click', () => {
+    closeModal();
+  });
+  messageModal.addEventListener('click', (evt) => {
+    if (evt.target.matches(`.${className}`)) {
+      closeModal();
+    }
+  });
+  document.addEventListener('keydown', handleKeyDownEvent);
+}
+
+function formUploadSuccess() {
+  handleMessageModal(successMessageTemplate, 'success');
+}
+
+function formUploadError() {
+  handleMessageModal(errorMessageTemplate, 'error');
+}
 // -----
 
 

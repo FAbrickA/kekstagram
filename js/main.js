@@ -1,7 +1,7 @@
-import { showPictures } from './showPictures.js';
-import { generatePhotoPlaceholders } from './data.js';
+import { loadPictures } from './showPictures.js';
 import './photoUploadForm.js';
 
-const photoPlaceholders = generatePhotoPlaceholders(25);
-showPictures(photoPlaceholders);
+const PICTURES_URL = 'https://27.javascript.pages.academy/kekstagram-simple/data';
+
+loadPictures(PICTURES_URL);
 
